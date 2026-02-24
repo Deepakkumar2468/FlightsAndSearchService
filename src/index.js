@@ -2,9 +2,9 @@ const express = require('express');
 // require('dotenv').config();
 
 const bodyParser = require('body-parser');
-const { City } = require('./models/index');
+// const { City } = require('./models/index');
 const { PORT } = require('./config/serverConfig');
-const CityRepository = require('./repository/city-repository');
+// const CityRepository = require('./repository/city-repository');
 
 
 const setupAndStartServer = async () => {
@@ -20,13 +20,15 @@ const setupAndStartServer = async () => {
         console.log(`Server is running on port ${PORT}`);
         // console.log(process.env.PORT);
         // console.log(db.City);
-        const repo = new CityRepository();
-        repo.createCity({ name: 'Old-Delhi' }).then((city) => {
-            console.log('City created:', city.toJSON());
-        }).catch((error) => {
-            console.error('Error creating city:', error);
-        });
-     
+
+
+    //     const repo = new CityRepository();
+    //     repo.createCity({ name: 'Old-Delhi' }).then((city) => {
+    //         console.log('City created:', city.toJSON());
+    //     }).catch((error) => {
+    //         console.error('Error creating city:', error);
+    //     });
+    //    repo.deleteCity(1)
     });
 
 

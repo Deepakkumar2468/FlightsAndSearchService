@@ -22,6 +22,18 @@ class CityRepository {
         }
     }
 
+    async updateCity(cityId, data) {
+        try {
+            const result = await City.update(data, 
+                { where: 
+                    { id: cityId } });
+            return result;
+        } catch (error) {
+            console.error('Error updating city:', error);
+            throw error;
+        }
+    }
+
     async getCityById(id) {
         try {
             const city = await City.findByPk(id);
