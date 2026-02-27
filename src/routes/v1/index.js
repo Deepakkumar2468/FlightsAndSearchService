@@ -5,7 +5,10 @@ const CityController = require('../../controllers/city-controller');
 const router = express.Router();
 
 router.post('/city', CityController.create);
-
+router.delete('/city/:id', CityController.destroy);
+router.put('/city/:id', CityController.update);
+router.get('/city/:id', CityController.getCityById);
+router.get('/city', CityController.getAllCities); 
 
 module.exports = router;
 
