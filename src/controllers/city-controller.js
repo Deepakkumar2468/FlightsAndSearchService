@@ -44,6 +44,7 @@ const destroy = async (req, res) => {
 
 const update = async (req, res) => {
     try {
+        console.log(req.body);
         const response = await cityService.updateCity(req.params.id, req.body);
         return res.status(200).json({
             data: response,
@@ -84,7 +85,8 @@ const getCityById = async (req, res) => {
 
 const getAllCities = async (req, res) => {
     try {
-        const cities = await cityService.getAllCities();
+        // console.log(req.params);
+        const cities = await cityService.getAllCities(req.query);
         return res.status(200).json({
             data: cities,
             success: true,

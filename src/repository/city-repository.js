@@ -1,4 +1,7 @@
+const { Op } = require('sequelize');
+
 const { City } = require('../models/index');
+
 
 class CityRepository {
     
@@ -28,6 +31,11 @@ class CityRepository {
                 { where: 
                     { id: cityId } });
             return result;
+            
+            // const city = await City.findByPk(cityId);
+            // city.name = data.name;
+            // await city.save();
+            // return city;
         } catch (error) {
             console.error('Error updating city:', error);
             throw error;
@@ -44,11 +52,21 @@ class CityRepository {
         }
     }
 
-    async getAllCities() {
+    async getAllCities(filter) { // filter can be emptly also
         try {
-            const cities = await City.findAll();
-            return cities;
-        } catch (error) {
+            if (filter.name) {
+                const cities = await City.findAll({ 
+                    where: {
+                         name: { 
+                            [Op.startsWith]: filter.name }
+                         }
+                    });
+                return cities;
+        }
+        const cities = await City.findAll();
+        return cities;
+    }
+         catch (error) {
             console.error('Error fetching all cities:', error);
             throw error;
         }
